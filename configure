@@ -1733,7 +1733,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-VERSION_MAJOR="1.0"
+VERSION_MAJOR="1.1"
 
 
 
@@ -2635,7 +2635,7 @@ fi
 VERSION_MAJOR=$VERSION_MAJOR
 
 
-ac_config_files="$ac_config_files Makefile"
+ac_config_files="$ac_config_files Makefile json-parser.pc"
 
 
 cat >confcache <<\_ACEOF
@@ -3344,6 +3344,7 @@ for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "json-parser.pc") CONFIG_FILES="$CONFIG_FILES json-parser.pc" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
