@@ -856,8 +856,10 @@ json_value * json_parse_ex (json_settings * settings,
                   {  sprintf (error, "%d:%d: Expected digit after `e`", line_and_col);
                      goto e_failed;
                   }
-
-                  top->u.dbl *= BASE[ (flags & flag_num_e_negative ? - num_e : num_e) ];
+                  if( flags & flag_num_e_negative )
+                      top->u.dbl /= BASE[ num_e ];
+                  else
+                      top->u.dbl *= BASE[ num_e ];
                }
 
                if (flags & flag_num_negative)
