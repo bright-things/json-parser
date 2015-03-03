@@ -40,7 +40,39 @@ const struct _json_value json_value_none;
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <math.h>
+
+static uint64_t BASE[30] = {
+1L,
+10L,
+100L,
+1000L,
+10000L,
+100000L,
+1000000L,
+10000000L,
+100000000L,
+1000000000L,
+10000000000L,
+100000000000L,
+1000000000000L,
+10000000000000L,
+100000000000000L,
+1000000000000000L,
+10000000000000000L,
+100000000000000000L,
+1000000000000000000L,
+1000000000000000000L * 10L,
+1000000000000000000L * 100L,
+1000000000000000000L * 1000L,
+1000000000000000000L * 10000L,
+1000000000000000000L * 100000L,
+1000000000000000000L * 1000000L,
+1000000000000000000L * 10000000L,
+1000000000000000000L * 100000000L,
+1000000000000000000L * 1000000000L,
+1000000000000000000L * 10000000000L,
+1000000000000000000L * 100000000000L
+};
 
 typedef unsigned int json_uchar;
 
@@ -799,7 +831,7 @@ json_value * json_parse_ex (json_settings * settings,
                         goto e_failed;
                      }
 
-                     top->u.dbl += ((double) num_fraction) / (pow (10.0, (double) num_digits));
+                     top->u.dbl += ((double) num_fraction) /  BASE[ num_digits ];
                   }
 
                   if (b == 'e' || b == 'E')
@@ -825,8 +857,7 @@ json_value * json_parse_ex (json_settings * settings,
                      goto e_failed;
                   }
 
-                  top->u.dbl *= pow (10.0, (double)
-                      (flags & flag_num_e_negative ? - num_e : num_e));
+                  top->u.dbl *= BASE[ (flags & flag_num_e_negative ? - num_e : num_e) ];
                }
 
                if (flags & flag_num_negative)
